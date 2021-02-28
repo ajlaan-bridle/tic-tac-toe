@@ -6,6 +6,7 @@ namespace TicTacToe
 {
     class Grid
     {
+        // this class represents the grid that is printed to the console
         public string[,] GridMarks { get; set; }
 
         public Grid()
@@ -17,6 +18,7 @@ namespace TicTacToe
 
         public void PrintGrid()
         {
+            // clears the console screen and prints the current state of the grid
             string gaps = "          |     |    ";
             string numbers = "       {0}  |  {1}  |  {2} ";
             string underLine = "     _____|_____|_____";

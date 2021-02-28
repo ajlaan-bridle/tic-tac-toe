@@ -6,6 +6,7 @@ namespace TicTacToe
 {
     class Game
     {
+        // this class handles running a game, taking turns, and determining the winner
         private static readonly string X = "X";
         private static readonly string O = "O";
         private bool gameOver;
@@ -37,16 +38,22 @@ namespace TicTacToe
                     int.TryParse(Console.ReadLine(), out input);
                 }
 
-                if(CheckGridEntry(grid, input))
+                if(IsEntryValid(grid, input))
                 {
                     MarkGrid(grid, input);
-                    playerXTurn = !playerXTurn;
                     CheckWinner(grid);
+                    if (IsGridFull(grid)) { gameOver = true; }
+                    playerXTurn = !playerXTurn;
                 }
             }
 
             grid.PrintGrid();
-            Console.WriteLine("The game is over, and the winner is {0}.\n", winner);
+            if(winner == X || winner == O)
+            {
+                Console.WriteLine("The game is over, and the winner is {0}.\n", winner);
+            }
+            else { Console.WriteLine("The game is a draw.\n"); }
+            
         }
 
         private void CheckWinner(Grid grid)
@@ -62,11 +69,11 @@ namespace TicTacToe
                 for (int j = 0; j < len; j++)
                 {
                     // row check
-                    if (grid.GridMarks[i, j] == X & rowMark == String.Empty)
+                    if (grid.GridMarks[i, j] == X && rowMark == String.Empty)
                     {
                         rowMark = X;
                     }
-                    else if (grid.GridMarks[i, j] == O & rowMark == String.Empty)
+                    else if (grid.GridMarks[i, j] == O && rowMark == String.Empty)
                     {
                         rowMark = O;
                     }
@@ -76,11 +83,11 @@ namespace TicTacToe
                     }
 
                     // column check
-                    if (grid.GridMarks[j, i] == X & colMark == String.Empty)
+                    if (grid.GridMarks[j, i] == X && colMark == String.Empty)
                     {
                         colMark = X;
                     }
-                    else if (grid.GridMarks[j, i] == O & colMark == String.Empty)
+                    else if (grid.GridMarks[j, i] == O && colMark == String.Empty)
                     {
                         colMark = O;
                     }
@@ -90,14 +97,14 @@ namespace TicTacToe
                     }
                 }
 
-                if(rowMark == X | rowMark == O)
+                if(rowMark == X || rowMark == O)
                 {
                     winner = rowMark;
                     gameOver = true;
                     return;
                 }
 
-                if(colMark == X | colMark == O)
+                if(colMark == X || colMark == O)
                 {
                     winner = colMark;
                     gameOver = true;
@@ -105,11 +112,11 @@ namespace TicTacToe
                 }
 
                 // check diagonals
-                if (grid.GridMarks[i, i] == X & diag1Mark == String.Empty)
+                if (grid.GridMarks[i, i] == X && diag1Mark == String.Empty)
                 {
                     diag1Mark = X;
                 }
-                else if (grid.GridMarks[i, i] == O & diag1Mark == String.Empty)
+                else if (grid.GridMarks[i, i] == O && diag1Mark == String.Empty)
                 {
                     diag1Mark = O;
                 }
@@ -118,11 +125,11 @@ namespace TicTacToe
                     diag1Mark = "None";
                 }
 
-                if (grid.GridMarks[i, len - 1 - i] == X & diag2Mark == String.Empty)
+                if (grid.GridMarks[i, len - 1 - i] == X && diag2Mark == String.Empty)
                 {
                     diag2Mark = X;
                 }
-                else if (grid.GridMarks[i, len - 1 - i] == O & diag2Mark == String.Empty)
+                else if (grid.GridMarks[i, len - 1 - i] == O && diag2Mark == String.Empty)
                 {
                     diag2Mark = O;
                 }
@@ -132,14 +139,14 @@ namespace TicTacToe
                 }
             }
 
-            if (diag1Mark == X | diag1Mark == O)
+            if (diag1Mark == X || diag1Mark == O)
             {
                 winner = diag1Mark;
                 gameOver = true;
                 return;
             }
 
-            if (diag2Mark == X | diag2Mark == O)
+            if (diag2Mark == X || diag2Mark == O)
             {
                 winner = diag2Mark;
                 gameOver = true;
@@ -149,9 +156,9 @@ namespace TicTacToe
             return;
         }
 
-        private bool CheckGridEntry(Grid grid, int input)
+        private bool IsEntryValid(Grid grid, int input)
         {
-            if (input < 1 | input > 9)
+            if (input < 1 || input > 9)
             {
                 Console.WriteLine("The grid number provided is invalid. Provide a number for an available grid space.");
                 Console.ReadKey();
@@ -161,7 +168,7 @@ namespace TicTacToe
             int row = GetRow(grid, input);
             int col = GetCol(grid, input);
 
-            if (grid.GridMarks[row, col] == "X" | grid.GridMarks[row, col] == "O")
+            if (grid.GridMarks[row, col] == X || grid.GridMarks[row, col] == O)
             {
                 Console.WriteLine("This grid space has already been taken. Provide a number for an available grid space.");
                 Console.ReadKey();
@@ -176,7 +183,7 @@ namespace TicTacToe
             int row = GetRow(grid, input);
             int col = GetCol(grid, input);
 
-            grid.GridMarks[row, col] = playerXTurn ? "X" : "O";
+            grid.GridMarks[row, col] = playerXTurn ? X : O;
             return;
         }
 
@@ -188,6 +195,21 @@ namespace TicTacToe
         private int GetCol(Grid grid, int input)
         {
             return (input - 1) % grid.GridMarks.GetLength(0);
+        }
+
+        private bool IsGridFull(Grid grid)
+        {
+            int len = grid.GridMarks.GetLength(0);
+
+            for (int i = 0; i < len; i++)
+            {
+                for(int j = 0; j < len; j++)
+                {
+                    if(grid.GridMarks[i, j] != X && grid.GridMarks[i, j] != O) { return false; }
+                }
+            }
+
+            return true;
         }
     }
 }
