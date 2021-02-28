@@ -8,26 +8,24 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ajlaa\\.nuget\\packages\\": {}
+    "/Users/ajlaan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ajlaa\\source\\repos\\TicTacToe\\TicTacToe\\TicTacToe.csproj",
+      "projectUniqueName": "/Users/ajlaan/Projects/tic-tac-toe/TicTacToe/TicTacToe.csproj",
       "projectName": "TicTacToe",
-      "projectPath": "C:\\Users\\ajlaa\\source\\repos\\TicTacToe\\TicTacToe\\TicTacToe.csproj",
-      "packagesPath": "C:\\Users\\ajlaa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ajlaa\\source\\repos\\TicTacToe\\TicTacToe\\obj\\",
+      "projectPath": "/Users/ajlaan/Projects/tic-tac-toe/TicTacToe/TicTacToe.csproj",
+      "packagesPath": "/Users/ajlaan/.nuget/packages/",
+      "outputPath": "/Users/ajlaan/Projects/tic-tac-toe/TicTacToe/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ajlaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/ajlaan/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }
